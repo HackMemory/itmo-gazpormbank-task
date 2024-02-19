@@ -6,6 +6,7 @@ plugins {
 	id 'org.jetbrains.kotlin.jvm' version '1.9.22'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.9.22'
 	id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.22'
+	id 'org.flywaydb.flyway' version '10.8.1'
 }
 
 group = 'ru.gazprombank'
@@ -26,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+	implementation 'org.flywaydb:flyway-core'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
