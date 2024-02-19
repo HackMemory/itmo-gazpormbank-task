@@ -11,12 +11,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  server-management-app:
+  app:
     env_file: ./.env
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: server_management_app
     ports:
       - "8080:8080"
     depends_on:
