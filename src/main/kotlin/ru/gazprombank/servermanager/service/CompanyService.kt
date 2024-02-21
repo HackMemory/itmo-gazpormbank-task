@@ -14,7 +14,7 @@ class CompanyService(val companyRepository: CompanyRepository) {
 
     fun getCompanyById(id: Long): Company {
         return companyRepository.findById(id)
-            .orElseThrow { NotFoundException("Company not found") }
+            .orElseThrow { NotFoundException("Company not found with id: $id") }
     }
 
     fun createCompany(company: CompanyRequest): Company = companyRepository.save(company.toCompany())

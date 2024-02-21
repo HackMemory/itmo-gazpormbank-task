@@ -17,7 +17,7 @@ class DepartmentService(
 
     fun getDepartmentById(id: Long): Department {
         return departmentRepository.findById(id)
-            .orElseThrow { NotFoundException("Department not found") }
+            .orElseThrow { NotFoundException("Department not found with id: $id") }
     }
 
     fun createDepartment(department: DepartmentRequest): Department {
