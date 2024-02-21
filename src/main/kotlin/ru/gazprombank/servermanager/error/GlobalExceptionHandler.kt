@@ -33,9 +33,9 @@ class GlobalExceptionHandler: ResponseEntityExceptionHandler() {
         request: WebRequest
     ): ResponseEntity<Any>? {
         val errorMessage = CustomError(
-            HttpStatus.NOT_FOUND.value(),
+            statusCode.value(),
             ex.message
         )
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage)
+        return ResponseEntity.status(statusCode).body(errorMessage)
     }
 }
