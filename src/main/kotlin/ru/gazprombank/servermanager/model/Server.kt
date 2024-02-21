@@ -5,7 +5,7 @@ import jakarta.persistence.*
 @Entity
 data class Server(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val serverId: Long,
+    val serverId: Long? = null,
     val name: String,
     val manufacturer: String,
     @Column(name = "ipv4_address")
