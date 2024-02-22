@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.EmployeeDTO
-import ru.gazprombank.servermanager.request.EmployeeRequest
+import ru.gazprombank.servermanager.request.CreateEmployeeRequest
 import ru.gazprombank.servermanager.service.EmployeeService
 
 @RestController
@@ -25,7 +25,7 @@ class EmployeeController(private val employeeService: EmployeeService) {
     }
 
     @PostMapping
-    fun createEmployee(@RequestBody employeeRequest: EmployeeRequest): ResponseEntity<EmployeeDTO> {
+    fun createEmployee(@RequestBody employeeRequest: CreateEmployeeRequest): ResponseEntity<EmployeeDTO> {
         val createdEmployee = employeeService.createEmployee(employeeRequest).toDTO()
         return ResponseEntity(createdEmployee, HttpStatus.CREATED)
     }

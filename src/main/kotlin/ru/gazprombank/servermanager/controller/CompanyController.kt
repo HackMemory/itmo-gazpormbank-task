@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.CompanyDTO
-import ru.gazprombank.servermanager.request.CompanyRequest
+import ru.gazprombank.servermanager.request.CreateCompanyRequest
 import ru.gazprombank.servermanager.service.CompanyService
 
 @RestController
@@ -25,7 +25,7 @@ class CompanyController(private val companyService: CompanyService) {
     }
 
     @PostMapping
-    fun createCompany(@RequestBody companyRequest: CompanyRequest): ResponseEntity<CompanyDTO> {
+    fun createCompany(@RequestBody companyRequest: CreateCompanyRequest): ResponseEntity<CompanyDTO> {
         val createdCompany = companyService.createCompany(companyRequest).toDTO()
         return ResponseEntity(createdCompany, HttpStatus.CREATED)
     }

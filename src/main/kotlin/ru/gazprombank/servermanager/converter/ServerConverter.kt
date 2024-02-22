@@ -3,9 +3,9 @@ package ru.gazprombank.servermanager.converter
 import ru.gazprombank.servermanager.dto.ServerDTO
 import ru.gazprombank.servermanager.model.Employee
 import ru.gazprombank.servermanager.model.Server
-import ru.gazprombank.servermanager.request.ServerRequest
+import ru.gazprombank.servermanager.request.CreateServerRequest
 
-fun ServerRequest.toServer(employee: Employee): Server {
+fun CreateServerRequest.toServer(employee: Employee): Server {
     return Server(
         name = this.name,
         manufacturer = this.manufacturer,

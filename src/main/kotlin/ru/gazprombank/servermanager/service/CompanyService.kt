@@ -2,7 +2,7 @@ package ru.gazprombank.servermanager.service
 
 import org.springframework.stereotype.Service
 import ru.gazprombank.servermanager.converter.toCompany
-import ru.gazprombank.servermanager.request.CompanyRequest
+import ru.gazprombank.servermanager.request.CreateCompanyRequest
 import ru.gazprombank.servermanager.exception.NotFoundException
 import ru.gazprombank.servermanager.model.Company
 import ru.gazprombank.servermanager.repository.CompanyRepository
@@ -17,7 +17,7 @@ class CompanyService(val companyRepository: CompanyRepository) {
             .orElseThrow { NotFoundException("Company not found with id: $id") }
     }
 
-    fun createCompany(company: CompanyRequest): Company = companyRepository.save(company.toCompany())
+    fun createCompany(company: CreateCompanyRequest): Company = companyRepository.save(company.toCompany())
 
     fun deleteCompany(id: Long) {
         val company = getCompanyById(id);

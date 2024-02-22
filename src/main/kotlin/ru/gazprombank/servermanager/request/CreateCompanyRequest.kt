@@ -1,5 +1,5 @@
 package ru.gazprombank.servermanager.request
 
-data class CompanyRequest(
+data class CreateCompanyRequest(
     val name: String
 )

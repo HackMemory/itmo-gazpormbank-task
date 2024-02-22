@@ -5,7 +5,7 @@ import ru.gazprombank.servermanager.converter.toServer
 import ru.gazprombank.servermanager.exception.NotFoundException
 import ru.gazprombank.servermanager.model.Server
 import ru.gazprombank.servermanager.repository.ServerRepository
-import ru.gazprombank.servermanager.request.ServerRequest
+import ru.gazprombank.servermanager.request.CreateServerRequest
 
 @Service
 class ServerService(private val serverRepository: ServerRepository,
@@ -20,7 +20,7 @@ class ServerService(private val serverRepository: ServerRepository,
             .orElseThrow { NotFoundException("Server not found with id: $id") }
     }
 
-    fun createServer(serverRequest: ServerRequest): Server {
+    fun createServer(serverRequest: CreateServerRequest): Server {
         val responsibleEmployee = employeeService.getEmployeeById(serverRequest.responsibleEmployeeId)
         val server = serverRequest.toServer(responsibleEmployee)
         return serverRepository.save(server)

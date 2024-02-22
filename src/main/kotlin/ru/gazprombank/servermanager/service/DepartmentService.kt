@@ -5,7 +5,7 @@ import ru.gazprombank.servermanager.converter.toDepartment
 import ru.gazprombank.servermanager.exception.NotFoundException
 import ru.gazprombank.servermanager.model.Department
 import ru.gazprombank.servermanager.repository.DepartmentRepository
-import ru.gazprombank.servermanager.request.DepartmentRequest
+import ru.gazprombank.servermanager.request.CreateDepartmentRequest
 
 @Service
 class DepartmentService(
@@ -20,7 +20,7 @@ class DepartmentService(
             .orElseThrow { NotFoundException("Department not found with id: $id") }
     }
 
-    fun createDepartment(department: DepartmentRequest): Department {
+    fun createDepartment(department: CreateDepartmentRequest): Department {
         val company = companyService.getCompanyById(department.companyId)
         return departmentRepository.save(department.toDepartment(company))
     }

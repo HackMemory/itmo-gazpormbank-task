@@ -1,6 +1,6 @@
 package ru.gazprombank.servermanager.request
 
-data class EmployeeRequest(
+data class CreateEmployeeRequest(
     val name: String,
     val departmentId: Long
 )

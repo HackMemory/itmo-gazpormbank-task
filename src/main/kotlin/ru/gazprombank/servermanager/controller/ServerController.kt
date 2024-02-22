@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.ServerDTO
-import ru.gazprombank.servermanager.request.ServerRequest
+import ru.gazprombank.servermanager.request.CreateServerRequest
 import ru.gazprombank.servermanager.service.ServerService
 
 @RestController
@@ -25,7 +25,7 @@ class ServerController(private val serverService: ServerService) {
     }
 
     @PostMapping
-    fun createServer(@RequestBody serverRequest: ServerRequest): ResponseEntity<ServerDTO> {
+    fun createServer(@RequestBody serverRequest: CreateServerRequest): ResponseEntity<ServerDTO> {
         val createdServer = serverService.createServer(serverRequest).toDTO()
         return ResponseEntity(createdServer, HttpStatus.CREATED)
     }

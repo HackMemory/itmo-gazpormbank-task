@@ -1,6 +1,6 @@
 package ru.gazprombank.servermanager.request
 
-data class ServerRequest(
+data class CreateServerRequest(
     val name: String,
     val manufacturer: String,
     val ipv4Address: String,

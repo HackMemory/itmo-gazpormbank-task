@@ -5,7 +5,7 @@ import ru.gazprombank.servermanager.converter.toEmployee
 import ru.gazprombank.servermanager.exception.NotFoundException
 import ru.gazprombank.servermanager.model.Employee
 import ru.gazprombank.servermanager.repository.EmployeeRepository
-import ru.gazprombank.servermanager.request.EmployeeRequest
+import ru.gazprombank.servermanager.request.CreateEmployeeRequest
 
 @Service
 class EmployeeService(private val employeeRepository: EmployeeRepository,
@@ -18,7 +18,7 @@ class EmployeeService(private val employeeRepository: EmployeeRepository,
             .orElseThrow { NotFoundException("Employee not found with id: $id") }
     }
 
-    fun createEmployee(employeeRequest: EmployeeRequest): Employee {
+    fun createEmployee(employeeRequest: CreateEmployeeRequest): Employee {
         val department = departmentService.getDepartmentById(employeeRequest.departmentId)
         return employeeRepository.save(employeeRequest.toEmployee(department))
     }

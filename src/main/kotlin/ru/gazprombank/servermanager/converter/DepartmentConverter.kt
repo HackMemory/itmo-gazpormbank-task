@@ -2,10 +2,10 @@ package ru.gazprombank.servermanager.converter
 
 import ru.gazprombank.servermanager.dto.DepartmentDTO
 import ru.gazprombank.servermanager.model.Company
-import ru.gazprombank.servermanager.request.DepartmentRequest
+import ru.gazprombank.servermanager.request.CreateDepartmentRequest
 import ru.gazprombank.servermanager.model.Department
 
-fun DepartmentRequest.toDepartment(company: Company): Department {
+fun CreateDepartmentRequest.toDepartment(company: Company): Department {
     return Department(
         name = this.name,
         company = company
