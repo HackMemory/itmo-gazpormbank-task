@@ -24,6 +24,6 @@ fun Server.toDTO(): ServerDTO {
         ipv4Address = this.ipv4Address,
         ram = this.ram,
         storage = this.storage,
-        responsibleEmployeeId = this.responsibleEmployee.employeeId
+        responsibleEmployeeId = this.responsibleEmployee?.employeeId
     )
 }

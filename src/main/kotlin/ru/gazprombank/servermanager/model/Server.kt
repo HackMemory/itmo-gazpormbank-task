@@ -14,5 +14,5 @@ data class Server(
     val storage: Double,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "responsible_employee_id")
-    val responsibleEmployee: Employee
+    val responsibleEmployee: Employee? = null
 )

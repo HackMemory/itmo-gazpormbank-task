@@ -16,6 +16,6 @@ fun Department.toDTO(): DepartmentDTO {
     return DepartmentDTO(
         departmentId = this.departmentId,
         name = this.name,
-        companyId = this.company.companyId
+        companyId = this.company?.companyId
     )
 }

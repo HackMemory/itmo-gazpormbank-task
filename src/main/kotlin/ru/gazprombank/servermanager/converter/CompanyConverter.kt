@@ -12,6 +12,7 @@ fun CompanyRequest.toCompany(): Company {
 
 fun Company.toDTO(): CompanyDTO {
     return CompanyDTO(
+        companyId = this.companyId,
         name = this.name
     )
 }

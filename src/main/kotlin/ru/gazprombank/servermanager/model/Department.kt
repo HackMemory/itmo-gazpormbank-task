@@ -9,5 +9,5 @@ data class Department(
     val name: String,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
-    val company: Company
+    val company: Company? = null
 )

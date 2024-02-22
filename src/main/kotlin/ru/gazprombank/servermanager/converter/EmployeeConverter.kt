@@ -16,6 +16,6 @@ fun Employee.toDTO(): EmployeeDTO {
     return EmployeeDTO(
         employeeId = this.employeeId,
         name = this.name,
-        departmentId = this.department.departmentId
+        departmentId = this.department?.departmentId
     )
 }
