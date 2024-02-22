@@ -6,6 +6,7 @@ import ru.gazprombank.servermanager.exception.NotFoundException
 import ru.gazprombank.servermanager.model.Server
 import ru.gazprombank.servermanager.repository.ServerRepository
 import ru.gazprombank.servermanager.request.CreateServerRequest
+import ru.gazprombank.servermanager.request.UpdateServerRequest
 
 @Service
 class ServerService(private val serverRepository: ServerRepository,
@@ -29,5 +30,11 @@ class ServerService(private val serverRepository: ServerRepository,
     fun deleteServer(id: Long) {
         val server = getServerById(id)
         serverRepository.delete(server)
+    }
+
+    fun updateServer(updateRequest: UpdateServerRequest): Server {
+        val server = getServerById(updateRequest.serverId)
+        val responsibleEmployee = employeeService.getEmployeeById(updateRequest.responsibleEmployeeId)
+        return serverRepository.save(updateRequest.toServer(responsibleEmployee, server))
     }
 }

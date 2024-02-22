@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.ServerDTO
 import ru.gazprombank.servermanager.request.CreateServerRequest
+import ru.gazprombank.servermanager.request.UpdateServerRequest
 import ru.gazprombank.servermanager.service.ServerService
 
 @RestController
@@ -28,6 +29,12 @@ class ServerController(private val serverService: ServerService) {
     fun createServer(@RequestBody serverRequest: CreateServerRequest): ResponseEntity<ServerDTO> {
         val createdServer = serverService.createServer(serverRequest).toDTO()
         return ResponseEntity(createdServer, HttpStatus.CREATED)
+    }
+
+    @PutMapping("/{id}")
+    fun updateServer(@PathVariable id: Long, @RequestBody updateRequest: UpdateServerRequest): ResponseEntity<ServerDTO> {
+        val updatedServer = serverService.updateServer(updateRequest).toDTO()
+        return ResponseEntity(updatedServer, HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")
