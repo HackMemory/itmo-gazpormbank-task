@@ -17,9 +17,9 @@ fun CreateServerRequest.toServer(employee: Employee): Server {
     )
 }
 
-fun UpdateServerRequest.toServer(employee: Employee, existingServer: Server): Server {
+fun UpdateServerRequest.toServer(employee: Employee, existingServerId: Long): Server {
     return Server(
-        serverId = existingServer.serverId,
+        serverId = existingServerId,
         name = this.name,
         manufacturer = this.manufacturer,
         ipv4Address = this.ipv4Address,
