@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository
 import ru.gazprombank.servermanager.model.Employee
 
 @Repository
-interface EmployeeRepository : JpaRepository<Employee, Long>
+interface EmployeeRepository : JpaRepository<Employee, Long> {
+    fun findByDepartmentCompanyCompanyId(companyId: Long): List<Employee>
+}
