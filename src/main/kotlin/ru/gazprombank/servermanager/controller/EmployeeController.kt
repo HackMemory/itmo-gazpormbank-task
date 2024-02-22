@@ -2,6 +2,7 @@ package ru.gazprombank.servermanager.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.EmployeeDTO
@@ -25,7 +26,7 @@ class EmployeeController(private val employeeService: EmployeeService) {
     }
 
     @PostMapping
-    fun createEmployee(@RequestBody employeeRequest: CreateEmployeeRequest): ResponseEntity<EmployeeDTO> {
+    fun createEmployee(@Validated @RequestBody employeeRequest: CreateEmployeeRequest): ResponseEntity<EmployeeDTO> {
         val createdEmployee = employeeService.createEmployee(employeeRequest).toDTO()
         return ResponseEntity(createdEmployee, HttpStatus.CREATED)
     }

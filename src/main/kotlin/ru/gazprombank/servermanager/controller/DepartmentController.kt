@@ -2,6 +2,7 @@ package ru.gazprombank.servermanager.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.DepartmentDTO
@@ -25,7 +26,7 @@ class DepartmentController(private val departmentService: DepartmentService) {
     }
 
     @PostMapping
-    fun createDepartment(@RequestBody departmentRequest: CreateDepartmentRequest): ResponseEntity<DepartmentDTO> {
+    fun createDepartment(@Validated @RequestBody departmentRequest: CreateDepartmentRequest): ResponseEntity<DepartmentDTO> {
         val createdDepartment = departmentService.createDepartment(departmentRequest).toDTO()
         return ResponseEntity(createdDepartment, HttpStatus.CREATED)
     }
