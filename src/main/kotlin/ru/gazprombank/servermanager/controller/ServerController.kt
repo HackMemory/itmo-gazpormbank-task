@@ -33,7 +33,7 @@ class ServerController(private val serverService: ServerService) {
 
     @PutMapping("/{id}")
     fun updateServer(@PathVariable id: Long, @RequestBody updateRequest: UpdateServerRequest): ResponseEntity<ServerDTO> {
-        val updatedServer = serverService.updateServer(updateRequest).toDTO()
+        val updatedServer = serverService.updateServer(id, updateRequest).toDTO()
         return ResponseEntity(updatedServer, HttpStatus.OK)
     }
 
