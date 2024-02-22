@@ -9,7 +9,9 @@ import ru.gazprombank.servermanager.request.CreateEmployeeRequest
 
 @Service
 class EmployeeService(private val employeeRepository: EmployeeRepository,
-                      private val departmentService: DepartmentService) {
+                      private val departmentService: DepartmentService,
+                      private val companyService: CompanyService
+) {
 
     fun getAllEmployees(): List<Employee> = employeeRepository.findAll()
 
@@ -26,5 +28,10 @@ class EmployeeService(private val employeeRepository: EmployeeRepository,
     fun deleteEmployee(id: Long) {
         val employee = getEmployeeById(id)
         employeeRepository.delete(employee)
+    }
+
+    fun getEmployeesByCompanyId(companyId: Long): List<Employee> {
+        val company = companyService.getCompanyById(companyId)
+        return employeeRepository.findByDepartmentCompanyCompanyId(company.companyId!!)
     }
 }

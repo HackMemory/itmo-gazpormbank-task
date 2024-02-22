@@ -10,7 +10,9 @@ import ru.gazprombank.servermanager.request.UpdateServerRequest
 
 @Service
 class ServerService(private val serverRepository: ServerRepository,
-                    private val employeeService: EmployeeService) {
+                    private val employeeService: EmployeeService,
+                    private val departmentService: DepartmentService
+) {
 
     fun getAllServers(): List<Server> {
         return serverRepository.findAll()
@@ -32,9 +34,14 @@ class ServerService(private val serverRepository: ServerRepository,
         serverRepository.delete(server)
     }
 
-    fun updateServer(updateRequest: UpdateServerRequest): Server {
-        val server = getServerById(updateRequest.serverId)
+    fun updateServer(id: Long, updateRequest: UpdateServerRequest): Server {
+        val server = getServerById(id)
         val responsibleEmployee = employeeService.getEmployeeById(updateRequest.responsibleEmployeeId)
-        return serverRepository.save(updateRequest.toServer(responsibleEmployee, server))
+        return serverRepository.save(updateRequest.toServer(responsibleEmployee, server.serverId!!))
+    }
+
+    fun getServersByDepartmentId(departmentId: Long): List<Server> {
+        val department = departmentService.getDepartmentById(departmentId)
+        return serverRepository.findByResponsibleEmployeeDepartmentDepartmentId(department.departmentId!!)
     }
 }
