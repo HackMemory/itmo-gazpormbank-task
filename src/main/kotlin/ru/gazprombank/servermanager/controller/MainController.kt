@@ -2,6 +2,7 @@ package ru.gazprombank.servermanager.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import ru.gazprombank.servermanager.converter.toDTO
 import ru.gazprombank.servermanager.dto.EmployeeDTO
@@ -27,7 +28,7 @@ class MainController(
 
     // Adding a new server
     @PostMapping("/servers")
-    fun createServer(@RequestBody serverRequest: CreateServerRequest): ResponseEntity<ServerDTO> {
+    fun createServer(@Validated @RequestBody serverRequest: CreateServerRequest): ResponseEntity<ServerDTO> {
         val createdServer = serverService.createServer(serverRequest).toDTO()
         return ResponseEntity(createdServer, HttpStatus.CREATED)
     }
@@ -36,7 +37,7 @@ class MainController(
     @PutMapping("/servers/{id}")
     fun updateServer(
         @PathVariable id: Long,
-        @RequestBody updateServerRequest: UpdateServerRequest
+        @Validated @RequestBody updateServerRequest: UpdateServerRequest
     ): ResponseEntity<ServerDTO> {
         val updatedServer = serverService.updateServer(id, updateServerRequest).toDTO()
         return ResponseEntity(updatedServer, HttpStatus.OK)

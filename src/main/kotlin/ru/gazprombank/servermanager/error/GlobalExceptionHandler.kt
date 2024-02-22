@@ -4,13 +4,13 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import ru.gazprombank.servermanager.exception.NotFoundException
-import java.lang.Exception
-import java.net.http.HttpHeaders
+import java.util.*
 
 
 @RestControllerAdvice
@@ -23,6 +23,18 @@ class GlobalExceptionHandler: ResponseEntityExceptionHandler() {
             ex.message
         )
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage)
+    }
+
+    override fun handleMethodArgumentNotValid(
+        ex: MethodArgumentNotValidException,
+        headers: org.springframework.http.HttpHeaders,
+        status: HttpStatusCode,
+        webRequest: WebRequest
+    ): ResponseEntity<Any>? {
+        val errors = ex.bindingResult.fieldErrors.map { fieldError ->
+            "${fieldError.field}: ${fieldError.defaultMessage}"
+        }
+        return ResponseEntity.status(status.value()).body(ValidationError(status.value(), errors))
     }
 
     override fun handleExceptionInternal(
